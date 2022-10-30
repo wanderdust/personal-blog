@@ -1,0 +1,43 @@
+---
+import Section from '../components/Section.astro';
+import Experience from '../components/Experience.astro';
+---
+<div>
+    <Section title="Experience">
+        <ul>
+            <Experience 
+                role="Machine Learning Engineer"
+                company="Zonda Satellite"
+                logo="images/zonda-logo.png"
+                body={
+                    `Built an end-to-end MLOps pipeline to support deploying multiple models
+                    for a different projects. I also researched trained and deployed multiple models to
+                    production for a unique problem space. Finally, I continously pushed to improve and
+                    refactor the existing codebase to use best engineering practices.`
+                }
+            />
+            <Experience 
+                role="Data Scientist"
+                company="UserTesting"
+                logo="images/usertesting-logo.png"
+                body={
+                    `Built an end-to-end MLOps pipeline to support deploying multiple models
+                    for a different projects. I also researched trained and deployed multiple models to
+                    production for a unique problem space. Finally, I continously pushed to improve and
+                    refactor the existing codebase to use best engineering practices.`
+                }
+            />
+            <Experience 
+                role="Sales Executive"
+                company="Mygon"
+                logo="images/mygon-logo.png"
+                body={
+                    `As part of the sales team, I was involved in the growth of the spanish branch of the
+                    company. My tasks included: 1. Prospecting clients to create new sale opportunities;
+                    2. Keeping track of current and potential clients; 3. Delivering succesful sales.`
+                }
+            />
+        </ul>
+    </Section>
+    
+</div>

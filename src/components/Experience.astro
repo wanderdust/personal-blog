@@ -1,0 +1,33 @@
+---
+export interface Props {
+	role: string;
+    company: string
+	body: string;
+	logo: string;
+    skills?: string[];
+}
+
+const { role, company, body, logo, skills=[] } = Astro.props;
+---
+
+<li class="flex flex-row space-x-8">
+	<div class="w-48">
+        <img src={logo} />
+    </div>
+    <div class="flex-1 container">
+        <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <span>{role}</span> @ <span>{company}</span>
+        </h2>
+        <p class="font-normal text-gray-700 dark:text-gray-400">
+            {body}
+        </p>
+        <div>
+            {skills.map((skill) => (
+                <span class="text-xs inline-flex items-center font-bold uppercase px-3 py-1 bg-sky-700 text-white rounded-full">
+                    {skill}
+                </span>
+            ))}
+        </div>
+    </div>
+    
+</li>

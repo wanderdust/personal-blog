@@ -1,0 +1,33 @@
+---
+import Section from '../components/Section.astro';
+import Experience from './Experience.astro';
+---
+<div>
+    <Section title="Education">
+        <ul>
+            <Experience 
+                role="MSc Artificial Intelligence with Speech & Multimodal Interaction"
+                company="Heriot Watt"
+                logo="images/hw-logo.png"
+                body={
+                    `Learned AI foundations, data mining and machine learning techniques. I
+                    also used applied statistics to solve business problems. I worked in teams
+                    to complete projects including using swarm algorithms (PSO) to optimise the
+                    parameters of a neural network and building a conversational agent to assist
+                    older adults. Finally, I completed my thesis as part of an industrial placement
+                    in UserTesting`
+                }
+            />
+            <Experience 
+                role="Degree in Commerce"
+                company="Heriot Watt"
+                logo="images/ucm-logo.png"
+                body={
+                    `Graduated with honors.During this time I participated in the Erasmus+
+                    program studying in Düsseldorf for an academic year.`
+                }
+            />
+        </ul>
+    </Section>
+    
+</div>
