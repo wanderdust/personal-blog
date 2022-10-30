@@ -4,19 +4,26 @@ import Project from './Project.astro';
 ---
 <div>
     <Section title="Projects">
-        <ul>
+        <div class="flex flex-wrap justify-center">
             <Project
-                title="Some Project"
-                description="Some project description"
-                href="#"
-                image="https://www.placecage.com/c/300/300"
+                title="Enhancing Alana for Eldery care"
+                description="A voice assistant designed to assist eldery people"
+                href="https://www.youtube.com/watch?v=v1hP3YWwvIs"
+                image="/images/SU.png"
+                tags={["NLP", "Interaction", "Pytorch"]}
             />
             <Project
-                title="Some Project"
-                description="Some project description"
-                href="#"
-                image="https://www.placecage.com/c/300/300"
+                title="Playing Space invaders with Reinforcement Learning"
+                description="An agent learns to play space invaders from image inputs"
+                href="https://github.com/wanderdust/ML_nanodegree_udacity/blob/master/projects/capstone_project/report.pdf"
+                image="/images/space-invaders.gif"
             />
-        </ul>
+            <Project
+                title="Don Quijote Bot"
+                description="A bot that (almost) speaks like Don Quijote de la Mancha using LSTMs."
+                href="https://github.com/wanderdust/don-quijote-bot"
+                image="/images/bot-quijote.png"
+            />
+        </div>
     </Section>
 </div>
