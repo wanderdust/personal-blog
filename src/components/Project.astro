@@ -10,7 +10,7 @@ export interface Props {
 const { href, title, description, image, tags = []} = Astro.props;
 ---
 
-<a href={href} class="rounded overflow-hidden shadow-lg my-10 mx-2 md:w-80">
+<a href={href} class="rounded overflow-hidden shadow-lg my-10 mx-2 md:w-80 hover:bg-sky-100">
     <div class="h-52 bg-cover" style={`background-image: url('${image}')`} />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">{title}</div>
