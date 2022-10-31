@@ -10,12 +10,12 @@ export interface Props {
 const { role, company, body, logo, skills=[] } = Astro.props;
 ---
 
-<li class="flex flex-row space-x-8">
-	<div class="w-48">
+<li class="flex flex-col py-5 md:flex-row">
+	<div class="w-48 py-2 md:py-0 md:pr-10">
         <img src={logo} />
     </div>
     <div class="flex-1 container">
-        <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h2 class="mb-2 text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             <span>{role}</span> @ <span>{company}</span>
         </h2>
         <p class="font-normal text-gray-700 dark:text-gray-400">
