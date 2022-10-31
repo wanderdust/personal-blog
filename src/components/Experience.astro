@@ -1,4 +1,6 @@
 ---
+import Tag from './Tag.astro';
+
 export interface Props {
 	role: string;
     company: string
@@ -26,11 +28,9 @@ const { role, company, body, logo, startDate, endDate = "today", skills=[] } = A
         <p class="font-normal text-gray-700 dark:text-gray-400">
             {body}
         </p>
-        <div>
+        <div class="pt-2">
             {skills.map((skill) => (
-                <span class="text-xs inline-flex items-center font-bold uppercase px-3 py-1 bg-sky-700 text-white rounded-full">
-                    {skill}
-                </span>
+                <Tag tag={skill}/>
             ))}
         </div>
     </div>
