@@ -13,10 +13,10 @@ const { postList } = Astro.props;
 <div>
     <Section title="">
         <div class="flex flex-col grow">
-            <div class="flex justify-center m-12">
+            <div class="flex justify-center md:m-12">
                 <h1 class="text-3xl font-bold">Articles</h1>
             </div>
-            <div>
+            <div class="flex flex-wrap justify-center">
                 {
                     postList.map((p) => (
                         <BlogPostCard post={p}/>

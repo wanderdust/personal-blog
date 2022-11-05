@@ -7,7 +7,7 @@ const { post } = Astro.props;
 ---
 
 <a href={post.url}
-  class="w-80 h-full block relative top-0 shadow-lg bg-white rounded-xl overflow-hidden"
+  class="rounded overflow-hidden shadow-lg my-5 mx-2 md:w-80 hover:bg-sky-100"
   data-test="article-card">
 
   <div class="h-52 bg-cover bg-center squiggle" style={`background-image: url('${post.postImage}')`} />
