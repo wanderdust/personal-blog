@@ -4,7 +4,7 @@ export const mapPosts = (posts) => {
         ...p.frontmatter
     })).sort(
         (a, b) =>
-        new Date(b.frontmatter.pubDate).valueOf() -
-        new Date(a.frontmatter.pubDate).valueOf()
+        new Date(b.pubDate).valueOf() -
+        new Date(a.pubDate).valueOf()
     ); 
 }
