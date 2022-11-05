@@ -1,5 +1,5 @@
 ---
-import LandingPage from '../layouts/LandingPage.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
 import About from '../components/About.astro';
@@ -9,11 +9,11 @@ import ProjectList from '../components/ProjectList.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<LandingPage title="index">
+<PageLayout title="index">
 	<Header />
 	<About />
 	<ExperienceList />
 	<EducationList />
 	<ProjectList />
 	<Footer />
-</LandingPage> 
+</PageLayout> 
