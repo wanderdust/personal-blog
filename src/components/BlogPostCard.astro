@@ -10,7 +10,7 @@ const { post } = Astro.props;
   class="w-80 h-full block relative top-0 shadow-lg bg-white rounded-xl overflow-hidden"
   data-test="article-card">
 
-  <div class="h-52 bg-cover squiggle" style={`background-image: url('${post.postImage}')`} />
+  <div class="h-52 bg-cover bg-center squiggle" style={`background-image: url('${post.postImage}')`} />
   <div class="py-6 px-8">
     <h2 class="font-bold text-2xl leading-tight">
       {post.title}
