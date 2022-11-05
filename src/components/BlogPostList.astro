@@ -10,19 +10,17 @@ export interface Props {
 const { postList } = Astro.props;
 ---
 
-<div>
-    <Section title="">
-        <div class="flex flex-col grow">
-            <div class="flex justify-center md:m-12">
-                <h1 class="text-3xl font-bold">Articles</h1>
-            </div>
-            <div class="flex flex-wrap justify-center">
-                {
-                    postList.map((p) => (
-                        <BlogPostCard post={p}/>
-                    ))
-                }
-            </div>
+<div class="mx-auto px-10 py-5 max-w-7xl">
+    <div class="flex flex-col grow">
+        <div class="flex justify-center md:m-12">
+            <h1 class="text-3xl font-bold">Articles</h1>
         </div>
-    </Section>
+        <div class="flex flex-wrap justify-center">
+            {
+                postList.map((p) => (
+                    <BlogPostCard post={p}/>
+                ))
+            }
+        </div>
+    </div>
 </div>

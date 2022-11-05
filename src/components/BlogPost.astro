@@ -16,10 +16,10 @@ const { title, image, tags = [] } = Astro.props;
     </div>
     <img class="rounded-xl mx-auto" style="min-width: 80%;" loading="lazy" src={image} alt={title} />
     <section class="max-w-3xl mx-auto py-6 lg:py-12 content">
-    <div class="tracking-normal text-md leading-relaxed" id="blog-text">
+    <div class="tracking-normal text-md leading-relaxed px-2" id="blog-text">
       <slot />
     </div>
-    <div class="pt-4 pb-2 pt-10">
+    <div class="pt-10 pb-2">
         {tags.map(tag => (
           <Tag tag={tag}/>
         ))}
