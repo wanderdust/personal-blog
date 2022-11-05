@@ -5,7 +5,7 @@ export interface Props {
 	image?: string;
 }
 
-const { title, description, image = "images/website-preview.jpg" } = Astro.props;
+const { title, description, image = "images/website-preview.png" } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -43,3 +43,5 @@ const { title, description, image = "images/website-preview.jpg" } = Astro.props
 <meta property='og:description' content={description}/>
 <meta property='og:url' content={Astro.url} />
 <meta name="author" content="Pablo Lopez Santori">
+
+{console.log(new URL(image, Astro.url))}
