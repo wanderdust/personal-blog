@@ -1,0 +1,28 @@
+---
+import Tag from './Tag.astro';
+import Section from '../components/Section.astro';
+import BlogPostCard from './BlogPostCard.astro';
+
+export interface Props {
+	postList: Record<string, any>[]
+}
+
+const { postList } = Astro.props;
+---
+
+<div>
+    <Section title="">
+        <div class="flex flex-col grow">
+            <div class="flex justify-center m-12">
+                <h1 class="text-3xl font-bold">Articles</h1>
+            </div>
+            <div>
+                {
+                    postList.map((p) => (
+                        <BlogPostCard post={p}/>
+                    ))
+                }
+            </div>
+        </div>
+    </Section>
+</div>

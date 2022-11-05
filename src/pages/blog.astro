@@ -2,10 +2,16 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import BlogPostList from '../components/BlogPostList.astro';
+import { mapPosts } from '../utils/general';
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = await Astro.glob("./blog/*.{md,mdx}");
+const postsMapped = mapPosts(posts)
 ---
 
 <PageLayout title="index">
 	<Header />
-	Blog posts here
+	<BlogPostList postList={postsMapped}/>
 	<Footer />
 </PageLayout> 
