@@ -1,5 +1,4 @@
 export const mapPosts = (posts) => {
-    console.log(posts[0].frontmatter)
     return posts.map(p => ({
         url: p.url,
         ...p.frontmatter
