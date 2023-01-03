@@ -8,6 +8,7 @@ import EducationList from "../components/EducationList.astro";
 import ProjectList from "../components/ProjectList.astro";
 import Footer from "../components/Footer.astro";
 import Coffee from "../components/Coffee.astro";
+import ChatWindow from "../components/ChatWindow.jsx";
 ---
 
 <PageLayout title="index">
@@ -18,4 +19,5 @@ import Coffee from "../components/Coffee.astro";
 	<ProjectList />
 	<Footer />
 	<Coffee />
+	<ChatWindow client:load />
 </PageLayout>
