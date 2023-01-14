@@ -17,7 +17,7 @@ export default function ChatWindow() {
                 message: message
             },
         })
-            .then((response) => addMessageToChat(response.json()))
+            .then((response) => addMessageToChat(chatMessages.concat(response.data)))
             .then(() => setMessage(""))
             .then(() => setIsLoading(false))
             .catch((error) => console.log(error))
