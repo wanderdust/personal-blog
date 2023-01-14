@@ -9,13 +9,13 @@ export default function ChatWindow() {
     const [isLoading, setIsLoading] = useState(false);
 
     const sendMessage = () => {
-        const api = "https://r7wnaozg1c.execute-api.eu-west-1.amazonaws.com/prod/chat/"
+        const api = "https://2ptgmvb0xk.execute-api.eu-west-1.amazonaws.com/prod/chat/"
         setIsLoading(true)
 
         axios.get(api, {
             params: {
                 message: message
-            }
+            },
         })
             .then((response) => addMessageToChat(response.json()))
             .then(() => setMessage(""))
