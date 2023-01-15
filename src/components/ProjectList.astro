@@ -1,10 +1,18 @@
 ---
-import Section from '../components/Section.astro';
-import Project from './Project.astro';
+import Section from "../components/Section.astro";
+import Project from "./Project.astro";
 ---
+
 <div>
     <Section title="Project Showcase">
         <div class="flex flex-wrap justify-center">
+            <Project
+                title="CV Chatbot"
+                description="A chatbot that answers questions about Pablo's CV. Click on the robot head to try it out!"
+                href="/blog/cv-chatbot"
+                image="/images/blog/chat-window.png"
+                tags={["AWS", "Terraform", "Chatbot", "NLP", "Python"]}
+            />
             <Project
                 title="Enhancing Alana for Eldery care"
                 description="A voice assistant designed to assist eldery people"
