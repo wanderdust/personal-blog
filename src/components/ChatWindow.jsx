@@ -25,17 +25,20 @@ export default function ChatWindow() {
 
     const messageBubble = (message, position = "right") => {
         return (
-            <div className={`mb-4 mx-2 text-${position}`}>
-                <span class="text-gray-700">{message}</span>
+            <div className="flex flex-col w-full">
+                <div className={`w-32 border mb-4 mx-2`}>
+                    <p class="text-gray-700">{message}</p>
+                </div>
             </div>
+
         )
 
     }
 
     return (
         <div className="h-96 w-64 border">
-            <div className="h-[80%] border flex flex-col overflow-scroll">
-                {chatMessages.map((message) => <span>{message}</span>)}
+            <div className="h-[80%] border relative overflow-scroll">
+                {chatMessages.map((message) => <span className="flex">{message}</span>)}
             </div>
             <div className="h-[20%] flex flex-row">
                 <input type="text" className="w-[80%]" onChange={(e) => setMessage(e.target.value)} value={message} placeholder="Message here ..." />
