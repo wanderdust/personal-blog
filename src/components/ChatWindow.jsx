@@ -4,6 +4,7 @@ import axios from "axios";
 export default function ChatWindow() {
     const [chatMessages, addMessageToChat] = useState([]);
     const [message, setMessage] = useState("");
+    const [isChatVisible, setChatVisible] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -38,29 +39,46 @@ export default function ChatWindow() {
     }
 
     useEffect(() => {
+        addMessageToChat(chatMessages => [...chatMessages, messageBubble("Hi, I'm BillyBot. I can answer questions about Pablo's CV.", "left")])
+    }, [])
+
+    useEffect(() => {
         scrollToBottom();
     }, [chatMessages])
 
     return (
-        <div className="h-96 w-64 border rounded">
-            <div className="h-[85%] border relative overflow-auto">
-                {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
-                <div className={`absolute bottom-0 ${isLoading ? "visible" : "invisible"}`}>
-                    <p className="text-sm text-gray-400">BillyBot is typing ...</p>
+        <div className="fixed bottom-24 right-2 z-40 xl:right-80 xl:bottom-6 text-right">
+            <div className={`h-96 w-64 border border-2 rounded bg-white ${!isChatVisible ? "hidden" : ""}`}>
+                <div className="h-[80%] relative overflow-auto pt-2">
+                    {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
+                </div>
+                <div className="h-[5%] text-left">
+                    <p className={`text-sm text-gray-400 px-2 ${isLoading ? "visible" : "hidden"} `}>BillyBot is typing ...</p>
+                </div>
+                <div className="h-[15%] flex flex-row border-t">
+                    <input type="text" className="w-[80%] px-2" onChange={(e) => setMessage(e.target.value)} value={message} placeholder="Message here ..." />
+                    <div id="message-input" className="w-[20%]">
+                        <button
+                            className={`w-full h-full text-white ${isLoading || message == "" ? "bg-gray-400" : "bg-blue-400"}`}
+                            disabled={isLoading || message == ""}
+                            onClick={startSendMessage}
+                        >
+                            {isLoading ? spinner() : "Send"}
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div className="h-[15%] flex flex-row">
-                <input type="text" className="w-[80%] px-2" onChange={(e) => setMessage(e.target.value)} value={message} placeholder="Message here ..." />
-                <div id="message-input" className="w-[20%]">
-                    <button
-                        className={`w-full h-full text-white ${isLoading || message == "" ? "bg-gray-400" : "bg-blue-400"}`}
-                        disabled={isLoading || message == ""}
-                        onClick={startSendMessage}
-                    >
-                        {isLoading ? spinner() : "Send"}
-                    </button>
-                </div>
-            </div>
+            <button
+                class="rounded-full bg-white shadow-lg p-2 hover:bg-gray-100"
+                onClick={() => setChatVisible(!isChatVisible)}
+            >
+                <img
+                    class="w-12 md:w-22"
+                    src="images/robot-head.png"
+                    alt="Buy Me A Coffee"
+                />
+            </button>
+
         </div>
     )
 }
@@ -69,8 +87,8 @@ export default function ChatWindow() {
 const messageBubble = (message, position = "right") => {
     return (
         <div className="container w-full">
-            <div className={`w-40 rounded bg-blue-200 p-2 mb-4 mx-2 ${position == "right" ? "ml-auto" : ""}`}>
-                <p className="text-gray-700">{message}</p>
+            <div className={`max-w-[60%] rounded bg-blue-200 p-2 mb-4 mx-2 ${position == "right" ? "ml-auto" : ""}`}>
+                <p className="text-gray-700 text-left">{message}</p>
             </div>
         </div>
     )
