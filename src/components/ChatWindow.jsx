@@ -39,7 +39,8 @@ export default function ChatWindow() {
     }
 
     useEffect(() => {
-        addMessageToChat(chatMessages => [...chatMessages, messageBubble("Hi, I'm BillyBot. I can answer questions about Pablo's CV.", "left")])
+        addMessageToChat(chatMessages => [...chatMessages, messageBubble("Hi, I'm BillyBot. I can answer questions about Pablo's CV", "left")])
+        addMessageToChat(chatMessages => [...chatMessages, messageBubble("Try asking, what's Pablo's current role?", "left")])
     }, [])
 
     useEffect(() => {
@@ -69,11 +70,11 @@ export default function ChatWindow() {
                 </div>
             </div>
             <button
-                class="rounded-full bg-white shadow-lg p-2 hover:bg-gray-100"
+                className="rounded-full bg-white shadow-lg p-2 hover:bg-gray-100"
                 onClick={() => setChatVisible(!isChatVisible)}
             >
                 <img
-                    class="w-12 md:w-22"
+                    className="w-12 md:w-22"
                     src="images/robot-head.png"
                     alt="Buy Me A Coffee"
                 />
