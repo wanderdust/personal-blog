@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 export default function ChatWindow() {
@@ -6,6 +6,13 @@ export default function ChatWindow() {
     const [message, setMessage] = useState("");
 
     const [isLoading, setIsLoading] = useState(false);
+
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+
 
     const sendMessage = () => {
         const api = "https://2ptgmvb0xk.execute-api.eu-west-1.amazonaws.com/prod/chat/"
@@ -25,9 +32,9 @@ export default function ChatWindow() {
 
     const messageBubble = (message, position = "right") => {
         return (
-            <div className="flex flex-col w-full">
-                <div className={`w-32 border mb-4 mx-2`}>
-                    <p class="text-gray-700">{message}</p>
+            <div className="container w-full">
+                <div className={`w-32 rounded bg-blue-200 p-2 mb-4 mx-2 ${position == "right" ? "ml-auto" : ""}`}>
+                    <p className="text-gray-700">{message}</p>
                 </div>
             </div>
 
@@ -35,10 +42,14 @@ export default function ChatWindow() {
 
     }
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [chatMessages])
+
     return (
         <div className="h-96 w-64 border">
-            <div className="h-[80%] border relative overflow-scroll">
-                {chatMessages.map((message) => <span className="flex">{message}</span>)}
+            <div className="h-[80%] border relative overflow-auto">
+                {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
             </div>
             <div className="h-[20%] flex flex-row">
                 <input type="text" className="w-[80%]" onChange={(e) => setMessage(e.target.value)} value={message} placeholder="Message here ..." />
