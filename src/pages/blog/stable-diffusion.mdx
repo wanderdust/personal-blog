@@ -1,0 +1,57 @@
+---
+title: "Notes on Stable Diffussion"
+description: "The steps of stable diffusion"
+pubDate: "Jan 19 2023"
+postImage: "/images/blog/stable-diffusion.png"
+tags: ["stable diffusion", "Notes"]
+layout: "../../layouts/BlogPostLayout.astro"
+---
+The following steps are a summary of how stable diffusion models are trained:
+
+<h1 class="text-xl mt-4">Train a noise prediction model</h1>
+<ul class="list-disc ml-9">
+    <li>First, we create a dataset of training images by adding random noise to the original images. We add different levels of noise to it (1,2, 3..)</li>
+    <li>We train a U-Net to predict the noise in the image.</li>
+    <li> When the model is trained, the model takes a *noisy* image and it predicts its noise. We can subtract the prediction (noise) from the input image.</li>
+</ul>
+
+
+
+<h1 class="text-xl mt-4">Painting an Image</h1>
+<ul class="list-disc ml-9">
+    <li> We pass a noisy image (full noise) to the U-Net and get a noise prediction. We also pass the noise amount (also known as the step).</li>
+    <li>Subtract prediction from the input noisy image.</li>
+    <li>Repeat process until we have an image with no noise</li>
+</ul>
+
+<h1 class="text-xl mt-4">Using latent space instead of pixel image</h1>
+<ul class="list-disc ml-9">
+    <li>We train an encoder decoder model to create the latent space. The way this works is that you train an encoder to generate a latent space, and then decode it using an encoder to get the orignal image.</li>
+    <li>We create the training data by applying the noise to the latent representations rather than the image. This will speed up training.</li>
+    <li>To visualise the results all we need to do is pass the latent space representation to the decoder.</li>
+</ul>
+
+<h1 class="text-xl mt-4">Text Encoding</h1>
+<ul class="list-disc ml-9">
+    <li>We use a transformer based model (BERT, CLILP, etc) to encode the text into a vector or latent space</li>
+</ul>
+
+<h1 class="mt-10">*Interlude - How CLIP is trained*</h1>
+<ul class="list-disc ml-9 mb-10">
+    <li>The CLIP dataset consists of a collection of images with their captions. The dataset was collected from online images with their alt texts</li>
+    <li>To train CLIP, they encode the image and the text separately. Then they use Cosine similarity to check how similar the encodings are.</li>
+    <li>They compare the predictions to the labels (1 similar, 0 not similar) and do back prop.</li>
+</ul>
+
+
+<h1 class="text-xl mt-4">Adding text to the image generation process</h1>
+<ul class="list-disc ml-9">
+    <li>The text addition is applied to the U-Net predictor.</li>
+    <li>To do this, they add an attention layer between the ResNets that merge both latent spaces.</li>
+</ul>
+
+
+<h1 class="text-md font-bold mt-8">References</h1>
+**The illustrated transformer** ->  https://jalammar.github.io/illustrated-stable-diffusion/
+
+**Image generated using Dreamstudio** -> https://beta.dreamstudio.ai/dream
