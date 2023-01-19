@@ -1,6 +1,6 @@
 ---
 title: "Building a Chatbot to answer questions about your CV"
-description: "Ï've built a chatbot that answers questions about my CV"
+description: "I've built a chatbot that answers questions about my CV"
 pubDate: "Jan 15 2023"
 postImage: "/images/blog/chat-window.png"
 tags: ["chatbot", "hugging-face", "React", "ML", "Terraform", "AWS"]
