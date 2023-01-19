@@ -31,6 +31,6 @@ Overall, creating a chatbot requires a thoughtful approach in choosing the right
 
 &nbsp;
 
-To try it out click on the robot head in the bottom right corner of [*this page*](https://cv-chatbot.netlify.app/).
+To try it out click on the robot head in the bottom right corner of [*this page*](/).
 
 **Repo**: [cv-chatbot-repo](https://github.com/wanderdust/cv-chatbot)
