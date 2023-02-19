@@ -32,10 +32,15 @@ export default function ChatWindow() {
             params: {
                 message: message
             },
+            timeout: 30000
         })
             .then((response) => addMessageToChat(chatMessages => [...chatMessages, messageBubble(response.data, "left")]))
             .then(() => setIsLoading(false))
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                console.log(error)
+                addMessageToChat(chatMessages => [...chatMessages, messageBubble("Sorry, I'm having trouble connecting to the server", "left")])
+                setIsLoading(false)
+            })
     }
 
     useEffect(() => {
