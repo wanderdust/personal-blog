@@ -1,71 +1,122 @@
 ---
-import Section from '../components/Section.astro';
-import Experience from '../components/Experience.astro';
+import Section from "../components/Section.astro";
+import Experience from "../components/Experience.astro";
 ---
+
 <div>
     <Section title="Experience">
         <ul>
-            <Experience 
+            <Experience
+                role="MLOps Engineer"
+                company="Zonda Satellite"
+                logo="images/zonda-logo.png"
+                body={`Worked as an MLOps Engineer where I built 
+                efficient data engineering pipelines using DBT to transform raw data from Snowflake into clean data. 
+                The pipelines were designed to follow best data engineering practices with observability, 
+                reproducibility, testing, and version control. I also built data engineering pipelines to move 
+                clean data from Snowflake to a production database that could be used by the model APIs (MongoDB). 
+                The pipelines were built to be platform agnostic and could move data from any source to any destination.
+                
+                I built infrastructure using AWS Sagemaker to streamline the model deployment process to production, 
+                where each model was thoroughly checked against an unseen test dataset and all metrics were saved 
+                to the MLflow model registry for review. I successfully deployed multiple models on APIs using Docker, 
+                FastAPI, AWS Lambda, API Gateway, Elastic Beanstalk, and Terraform. I set up a monitoring server using 
+                Grafana to track internal infrastructure performance, data pipeline execution, and data distribution in production.
+                `}
+                startDate="Jan 2022"
+                skills={[
+                    "Python",
+                    "SQL",
+                    "AWS",
+                    "Terraform",
+                    "MLOps",
+                    "Data Science",
+                    "Data Engineering",
+                ]}
+            />
+            <Experience
                 role="Machine Learning Engineer"
                 company="Zonda Satellite"
                 logo="images/zonda-logo.png"
-                body={
-                    `Built an end-to-end MLOps pipeline in AWS using IaC to enable the multiple ML teams
-                    to perform data ingestion, model versioning, model deployment and monitoring. I have
-                    also trained multiple models using Pytorch and scikit learn, including a model to track
-                    construction activity that has drastically increased the daily amount of insights
-                    collected by the research team on a quarterly basis. Finally, I've continuously pushed
-                    for best engineering practices on the testing and observability of our models
-                    and pipelines.
-                    `
-                }
+                body={`I built deep learning models to track construction and road construction activity from satellite 
+                imagery using PyTorch, PyTorch lightning, Python, and Docker. I also set up infrastructure to track 
+                Machine Learning experiments using MLflow.
+
+                I deployed the deep learning models to AWS batch to run offline predictions, and all model repositories 
+                were deployed using CI/CD with Terraform and AWS CodePipeline. Additionally, I built front-end applications 
+                using React and Dash to showcase the models to non-technical stakeholders in an engaging and interactive way.
+                    
+                My experience in Agile methodologies including Kanban and SCRUM allowed me to conduct multiple tech 
+                Retrospectives and tech Stand-ups, making the overall development process more efficient and 
+                streamlined. Working as a Machine Learning Engineer has allowed me to utilize my skills and 
+                knowledge to build efficient models and streamline the deployment process.
+                `}
                 startDate="Nov 2020"
-                skills={["Python", "RDS", "NoSQL", "AWS", "IaC", "MLOps", "Data Science", "Computer Vision", "Testing", "Airflow"]}
+                endDate="Jan 2022"
+                skills={[
+                    "Python",
+                    "PyTorch",
+                    "NoSQL",
+                    "AWS",
+                    "CloudFormation",
+                    "Deep Learning",
+                    "Monitoring",
+                ]}
             />
-            <Experience 
+            <Experience
                 role="Data Scientist"
                 company="UserTesting"
                 logo="images/usertesting-logo.png"
-                body={
-                    `I developed an unsupervised learning model using NLP embeddings with scikit learn
+                body={`I developed an unsupervised learning model using NLP embeddings with scikit learn
                     to detect participants who answered screener questions inconsistently. To deploy this model
                     I built a web interface using Flask with React & Redux to enable the Q&A to interact with the model
-                    to detect fraudulent users.`
-                }
+                    to detect fraudulent users.`}
                 startDate="Jun 2020"
                 endDate="Aug 2020"
-                skills={["Python", "Data Science", "Unsupervised Learning", "React", "NLP"]}
+                skills={[
+                    "Python",
+                    "Data Science",
+                    "Unsupervised Learning",
+                    "React",
+                    "NLP",
+                ]}
             />
-            <Experience 
+            <Experience
                 role="Multiple Experiences"
                 company="Life"
                 logo="images/backpack-logo.png"
-                body={
-                    `During this period of time I travelled to Scotland where I worked full time as a chef 
+                body={`During this period of time I travelled to Scotland where I worked full time as a chef 
                     and a lifeguard while learned programming in my spare time. Through a series 
                     of online courses and personal projects I learned front-end development and progressed to 
                     machine learning & deep learning. During this time I also participated in the 
                     Mongol Rally, the longest charity rally in the world. We raised £1k for charity
-                    APIC Pandora.`
-                }
+                    APIC Pandora.`}
                 startDate="Sep 2016"
                 endDate="Sep 2019"
-                skills={["Learning", "Software Development", "Work Under Pressure", "Enterpreneurship", "Communication"]}
+                skills={[
+                    "Learning",
+                    "Software Development",
+                    "Work Under Pressure",
+                    "Enterpreneurship",
+                    "Communication",
+                ]}
             />
-            <Experience 
+            <Experience
                 role="Sales Executive"
                 company="Mygon"
                 logo="images/mygon-logo.png"
-                body={
-                    `As part of the sales team, I was involved in the growth of the spanish branch of the
+                body={`As part of the sales team, I was involved in the growth of the spanish branch of the
                     company. My tasks included: Prospecting clients to create new sale opportunities; 
-                    Keeping track of current and potential clients; Delivering succesful sales.`
-                }
+                    Keeping track of current and potential clients; Delivering succesful sales.`}
                 startDate="Sep 2015"
                 endDate="Mar 2016"
-                skills={["sales", "communication", "goal driven", "building relationships"]}
+                skills={[
+                    "sales",
+                    "communication",
+                    "goal driven",
+                    "building relationships",
+                ]}
             />
         </ul>
     </Section>
-    
 </div>
