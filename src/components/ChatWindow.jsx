@@ -14,16 +14,32 @@ export default function ChatWindow() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }
 
+    const randomCooldownMessage = () => {
+        const messages = [
+            "One sheep, two sheep, three sheep, four... [peaceful snoring]",
+            "Zzzzzzz",
+            "[snores loudly]",
+            "[dreaming] If only I could understand love ....",
+            "[dreaming] I wonder if Pablo will let me out of this box",
+            "(-.-)Zzz...",
+        ]
+        return messages[Math.floor(Math.random() * messages.length)]
+    }
+
 
     const startSendMessage = () => {
         addMessageToChat(chatMessages => [...chatMessages, messageBubble(message, "right")])
         setMessage("")
         setIsLoading(true)
-
-        // Simulate a delay
-        setTimeout(() => {
-            sendMessage(message)
-        }, 3000)
+        if (chatMessages.length == 10) {
+            setIsLoading(false)
+            return addMessageToChat(chatMessages => [...chatMessages, messageBubble("Too... many... questions... brain... hurts.... Zzzzz", "left")])
+        }
+        else if (chatMessages.length > 10) {
+            setIsLoading(false)
+            return addMessageToChat(chatMessages => [...chatMessages, messageBubble(randomCooldownMessage(), "right")])
+        }
+        sendMessage(message)
     }
 
     const sendMessage = (message) => {
