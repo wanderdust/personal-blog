@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 export default function ChatWindow() {
+    const maxMessages = 20;
     const [chatMessages, addMessageToChat] = useState([]);
     const [message, setMessage] = useState("");
     const [isChatVisible, setChatVisible] = useState(false);
@@ -32,13 +33,13 @@ export default function ChatWindow() {
         addMessageToChat(chatMessages => [...chatMessages, messageBubble(message, "right")])
         setMessage("")
         setIsLoading(true)
-        if (chatMessages.length == 10) {
+        if (chatMessages.length == maxMessages) {
             return delay(3000).then(() => {
                 addMessageToChat(chatMessages => [...chatMessages, messageBubble("Too... many... questions... brain... hurts.... Zzzzz", "left")])
                 setIsLoading(false)
             })
         }
-        else if (chatMessages.length > 10) {
+        else if (chatMessages.length > maxMessages) {
             return delay(5000).then(() => {
                 addMessageToChat(chatMessages => [...chatMessages, messageBubble(randomCooldownMessage(), "left")])
                 setIsLoading(false)
