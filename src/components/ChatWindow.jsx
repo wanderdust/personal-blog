@@ -16,34 +16,39 @@ export default function ChatWindow() {
 
     const randomCooldownMessage = () => {
         const messages = [
-            "One sheep, two sheep, three sheep, four... [peaceful snoring]",
+            "One sheep, two sheep, three sheep, four... *snoring*",
             "Zzzzzzz",
-            "[snores loudly]",
-            "[dreaming] If only I could understand love ....",
-            "[dreaming] I wonder if Pablo will let me out of this box",
-            "(-.-)Zzz...",
+            "ZzZzZzZ",
+            "zzzzzz, *snores*, zzzz"
         ]
         return messages[Math.floor(Math.random() * messages.length)]
     }
 
+    const delay = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     const startSendMessage = () => {
         addMessageToChat(chatMessages => [...chatMessages, messageBubble(message, "right")])
         setMessage("")
         setIsLoading(true)
         if (chatMessages.length == 10) {
-            setIsLoading(false)
-            return addMessageToChat(chatMessages => [...chatMessages, messageBubble("Too... many... questions... brain... hurts.... Zzzzz", "left")])
+            return delay(3000).then(() => {
+                addMessageToChat(chatMessages => [...chatMessages, messageBubble("Too... many... questions... brain... hurts.... Zzzzz", "left")])
+                setIsLoading(false)
+            })
         }
         else if (chatMessages.length > 10) {
-            setIsLoading(false)
-            return addMessageToChat(chatMessages => [...chatMessages, messageBubble(randomCooldownMessage(), "right")])
+            return delay(5000).then(() => {
+                addMessageToChat(chatMessages => [...chatMessages, messageBubble(randomCooldownMessage(), "left")])
+                setIsLoading(false)
+            })
         }
         sendMessage(message)
     }
 
     const sendMessage = (message) => {
-        const api = "https://2ptgmvb0xk.execute-api.eu-west-1.amazonaws.com/prod/chat/"
+        const api = "https://2voojy0x5f.execute-api.eu-west-1.amazonaws.com/prod/chat"
         axios.get(api, {
             params: {
                 message: message
