@@ -7,6 +7,13 @@ tags: ["chatbot", "hugging-face", "React", "ML", "Terraform", "AWS"]
 layout: "../../layouts/BlogPostLayout.astro"
 ---
 
+**EDIT**: I gave in and decided to replace the old chatbot with the OpenAI api. The capabilities of GPT-3 are so incredible and the price is so cheap that I decided to just go for it. 
+Now the chatbot is a lot more interactive and a more fun experience.
+
+&nbsp;
+
+[OLD]
+
 I've recently created a chatbot to answer questions about my CV using ML. The goal of this chatbot is to provide an easy way for people to find out about my work experience by asking a chatbot.
 
 &nbsp;
