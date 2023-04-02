@@ -11,9 +11,9 @@ export default function Pong({ isGameOver, onAiScore }) {
         canvas.width = canvas.parentElement.clientWidth;
         canvas.height = canvas.parentElement.clientHeight;
         const paddleWidth = 10;
-        const paddleHeight = 60;
+        const paddleHeight = 40;
         const ballRadius = 6;
-        const paddleSpeed = 4;
+        const paddleSpeed = 2;
         let playerScore = 0;
         let computerScore = 0;
         const winningScore = 3;
@@ -24,7 +24,21 @@ export default function Pong({ isGameOver, onAiScore }) {
 
         const playerPaddle = { x: 20, y: canvas.height / 2 - paddleHeight / 2 };
         const computerPaddle = { x: canvas.width - 30, y: canvas.height / 2 - paddleHeight / 2 };
-        const ball = { x: canvas.width / 2, y: canvas.height / 2, speed: 3, dx: -3, dy: 3 };
+        const ball = { x: canvas.width / 2, y: canvas.height / 2, speed: 3, dx: 3, dy: 1 };
+
+        const touchStartHandler = (e) => {
+            const touchY = e.touches[0].clientY;
+            if (touchY < canvas.height / 2) {
+                upArrowPressed = true;
+            } else {
+                downArrowPressed = true;
+            }
+        };
+
+        const touchEndHandler = () => {
+            upArrowPressed = false;
+            downArrowPressed = false;
+        };
 
 
         const keyDownHandler = (e) => {
@@ -59,6 +73,8 @@ export default function Pong({ isGameOver, onAiScore }) {
 
         document.addEventListener('keydown', keyDownHandler);
         document.addEventListener('keyup', keyUpHandler);
+        canvas.addEventListener('touchstart', touchStartHandler);
+        canvas.addEventListener('touchend', touchEndHandler);
 
         const drawRect = (x, y, width, height, color) => {
             context.fillStyle = color;
@@ -119,24 +135,52 @@ export default function Pong({ isGameOver, onAiScore }) {
             }
         };
 
+        const moveComputerPaddle = () => {
+            const targetY = ball.y - paddleHeight / 2;
+            const deltaY = targetY - computerPaddle.y;
+
+            if (Math.abs(deltaY) <= paddleSpeed) {
+                computerPaddle.y = targetY;
+            } else if (deltaY > 0) {
+                computerPaddle.y += paddleSpeed;
+            } else {
+                computerPaddle.y -= paddleSpeed;
+            }
+
+            // Keep the paddle within canvas bounds
+            if (computerPaddle.y < 0) {
+                computerPaddle.y = 0;
+            } else if (computerPaddle.y > canvas.height - paddleHeight) {
+                computerPaddle.y = canvas.height - paddleHeight;
+            }
+        };
+
         const detectCollision = (paddle) => {
-            return (
+            const collision =
                 ball.x - ballRadius < paddle.x + paddleWidth &&
                 ball.x + ballRadius > paddle.x &&
                 ball.y - ballRadius < paddle.y + paddleHeight &&
-                ball.y + ballRadius > paddle.y
-            );
+                ball.y + ballRadius > paddle.y;
+
+            if (collision) {
+                const relativeIntersectY = paddle.y + paddleHeight / 2 - ball.y;
+                const normalizedIntersectY = relativeIntersectY / (paddleHeight / 2);
+                const bounceAngle = normalizedIntersectY * (Math.PI / 4);
+                ball.dy = -ball.speed * Math.sin(bounceAngle);
+            }
+
+            return collision;
         };
+
 
         const update = () => {
             moveBall();
             movePlayerPaddle();
+            moveComputerPaddle();
 
             if (detectCollision(playerPaddle) || detectCollision(computerPaddle)) {
                 ball.dx *= -1;
             }
-
-            computerPaddle.y = ball.y - paddleHeight / 2;
 
             draw();
         };
@@ -195,6 +239,8 @@ export default function Pong({ isGameOver, onAiScore }) {
             gameOver = true;
             document.removeEventListener('keydown', keyDownHandler);
             document.removeEventListener('keyup', keyUpHandler);
+            canvas.removeEventListener('touchstart', touchStartHandler);
+            canvas.removeEventListener('touchend', touchEndHandler);
             cancelAnimationFrame(update);
         };
     }, []);
