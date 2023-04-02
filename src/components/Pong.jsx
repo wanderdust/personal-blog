@@ -44,7 +44,7 @@ export default function Pong({ isGameOver, onAiScore }) {
         };
 
         const drawInstructions = (color = "white") => {
-            const instructions = 'Use W/S keys';
+            const instructions = 'Use W/S keys to move';
             context.fillStyle = color;
             context.font = '16px Arial';
             context.fillText(instructions, canvas.width / 2 - context.measureText(instructions).width / 2, canvas.height - 30);

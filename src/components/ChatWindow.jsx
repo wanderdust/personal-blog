@@ -57,6 +57,15 @@ export default function ChatWindow() {
         sendMessage(message)
     }
 
+    const setSecretPlaceholder = async (prob = 0.5) => {
+        if (Math.random() < prob) {
+            setPlaceholder("Psst, try typing 'pong'")
+            await delay(3000)
+            setPlaceholder("Message here...")
+        }
+    }
+
+
     const sendMessage = (message) => {
         const api = "https://2voojy0x5f.execute-api.eu-west-1.amazonaws.com/prod/chat"
         axios.get(api, {
@@ -67,6 +76,7 @@ export default function ChatWindow() {
         })
             .then((response) => addMessageToChat(chatMessages => [...chatMessages, messageBubble(response.data, "left")]))
             .then(() => setIsLoading(false))
+            .then(() => setSecretPlaceholder())
             .catch((error) => {
                 console.log(error)
                 addMessageToChat(chatMessages => [...chatMessages, messageBubble("Sorry, I'm having trouble connecting to the server", "left")])
