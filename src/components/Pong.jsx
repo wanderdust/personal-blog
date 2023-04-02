@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-export default function Pong({ isGameOver }) {
+export default function Pong({ isGameOver, onAiScore }) {
     const canvasRef = useRef(null);
+
 
 
     useEffect(() => {
@@ -18,6 +19,8 @@ export default function Pong({ isGameOver }) {
         const winningScore = 3;
         let upArrowPressed = false;
         let downArrowPressed = false;
+        let gameOver = false;
+
 
         const playerPaddle = { x: 20, y: canvas.height / 2 - paddleHeight / 2 };
         const computerPaddle = { x: canvas.width - 30, y: canvas.height / 2 - paddleHeight / 2 };
@@ -92,9 +95,11 @@ export default function Pong({ isGameOver }) {
             if (ball.x - ballRadius < 0) {
                 computerScore++;
                 resetBall();
+                onAiScore && onAiScore();
             }
 
             if (playerScore === winningScore || computerScore === winningScore) {
+                gameOver = true;
                 isGameOver();
             }
         };
@@ -145,7 +150,9 @@ export default function Pong({ isGameOver }) {
             drawText(computerScore, canvas.width * 3 / 4, 30, 'white');
             drawInstructions();
 
-            requestAnimationFrame(update);
+            if (!gameOver) {
+                requestAnimationFrame(update);
+            }
         };
         let countdown = 3;
 
@@ -185,6 +192,7 @@ export default function Pong({ isGameOver }) {
         startCountdown();
 
         return () => {
+            gameOver = true;
             document.removeEventListener('keydown', keyDownHandler);
             document.removeEventListener('keyup', keyUpHandler);
             cancelAnimationFrame(update);

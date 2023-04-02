@@ -10,8 +10,7 @@ export default function ChatWindow() {
     const [isChatVisible, setChatVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isPongVisible, setPongVisible] = useState(false);
-
-
+    const [placeholder, setPlaceholder] = useState("Message here...");
 
     const messagesEndRef = useRef(null);
 
@@ -34,8 +33,10 @@ export default function ChatWindow() {
     }
 
     const startSendMessage = () => {
-        if (message.toLowerCase() === 'pong') {
+        // Check if the sentence includes the word "pong"
+        if (message.toLowerCase().includes('pong')) {
             setMessage("")
+            setPlaceholder("Get ready to lose! Wahaha!");
             return setPongVisible(true);
         }
         addMessageToChat(chatMessages => [...chatMessages, messageBubble(message, "right")])
@@ -75,7 +76,23 @@ export default function ChatWindow() {
 
     const handleGameOver = () => {
         setPongVisible(false);
+        setPlaceholder("Message here..."); // Reset the placeholder
     };
+
+
+    const handleAiScore = () => {
+        const wittyMessages = [
+            "Oops, I scored again!",
+            "Did you see that shot?",
+            "I'm getting good at this!",
+            "Better luck next time!",
+        ];
+
+        const randomMessage = wittyMessages[Math.floor(Math.random() * wittyMessages.length)];
+        setPlaceholder(randomMessage); // Update the placeholder text
+    };
+
+
 
     useEffect(() => {
         addMessageToChat(chatMessages => [...chatMessages, messageBubble("Hi, I'm BillyBot. I can answer questions about Pablo's CV", "left")])
@@ -88,13 +105,15 @@ export default function ChatWindow() {
 
     return (
         <div className="fixed bottom-24 right-2 z-40 xl:right-80 xl:bottom-6 text-right">
-            {isPongVisible && <Pong isGameOver={handleGameOver} />}
             <div className={`h-96 w-64 border border-2 rounded bg-white ${!isChatVisible ? "hidden" : ""}`}>
-                <div className="h-[80%] relative overflow-auto pt-2">
-                    {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
-                </div>
-                <div className="h-[5%] text-left">
-                    <p className={`text-sm text-gray-400 px-2 ${isLoading ? "visible" : "hidden"} `}>BillyBot is typing ...</p>
+                <div className="h-[85%] relative">
+                    {isPongVisible && <Pong isGameOver={handleGameOver} onAiScore={handleAiScore} />}
+                    <div className="h-[90%] relative overflow-auto pt-2">
+                        {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
+                    </div>
+                    <div className="h-[10%] text-left">
+                        <p className={`text-sm text-gray-400 px-2 ${isLoading ? "visible" : "hidden"} `}>BillyBot is typing ...</p>
+                    </div>
                 </div>
                 <div className="h-[15%] flex flex-row border-t">
                     <input
@@ -107,7 +126,7 @@ export default function ChatWindow() {
                                 startSendMessage();
                             }
                         }}
-                        placeholder="Message here ..."
+                        placeholder={placeholder}
                         disabled={isPongVisible}
                     />
                     <div id="message-input" className="w-[20%]">
@@ -141,7 +160,7 @@ const messageBubble = (message, position = "right") => {
     return (
         <div className="container w-full">
             <div className={`max-w-[60%] rounded bg-blue-200 p-2 mb-4 mx-2 ${position == "right" ? "ml-auto" : ""}`}>
-                <p className="text-gray-700 text-left">{message}</p>
+                <p className="text-gray-700 text-left text-sm">{message}</p>
             </div>
         </div>
     )
