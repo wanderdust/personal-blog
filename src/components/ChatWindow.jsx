@@ -1,13 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Pong from './Pong';
+
 
 export default function ChatWindow() {
     const maxMessages = 20;
     const [chatMessages, addMessageToChat] = useState([]);
     const [message, setMessage] = useState("");
     const [isChatVisible, setChatVisible] = useState(false);
-
     const [isLoading, setIsLoading] = useState(false);
+    const [isPongVisible, setPongVisible] = useState(false);
+
+
 
     const messagesEndRef = useRef(null);
 
@@ -30,6 +34,10 @@ export default function ChatWindow() {
     }
 
     const startSendMessage = () => {
+        if (message.toLowerCase() === 'pong') {
+            setMessage("")
+            return setPongVisible(true);
+        }
         addMessageToChat(chatMessages => [...chatMessages, messageBubble(message, "right")])
         setMessage("")
         setIsLoading(true)
@@ -65,6 +73,10 @@ export default function ChatWindow() {
             })
     }
 
+    const handleGameOver = () => {
+        setPongVisible(false);
+    };
+
     useEffect(() => {
         addMessageToChat(chatMessages => [...chatMessages, messageBubble("Hi, I'm BillyBot. I can answer questions about Pablo's CV", "left")])
         addMessageToChat(chatMessages => [...chatMessages, messageBubble("Try asking, what's Pablo's current role?", "left")])
@@ -76,6 +88,7 @@ export default function ChatWindow() {
 
     return (
         <div className="fixed bottom-24 right-2 z-40 xl:right-80 xl:bottom-6 text-right">
+            {isPongVisible && <Pong isGameOver={handleGameOver} />}
             <div className={`h-96 w-64 border border-2 rounded bg-white ${!isChatVisible ? "hidden" : ""}`}>
                 <div className="h-[80%] relative overflow-auto pt-2">
                     {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
