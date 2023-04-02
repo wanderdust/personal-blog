@@ -97,7 +97,19 @@ export default function ChatWindow() {
                     <p className={`text-sm text-gray-400 px-2 ${isLoading ? "visible" : "hidden"} `}>BillyBot is typing ...</p>
                 </div>
                 <div className="h-[15%] flex flex-row border-t">
-                    <input type="text" className="w-[80%] px-2" onChange={(e) => setMessage(e.target.value)} value={message} placeholder="Message here ..." />
+                    <input
+                        type="text"
+                        className="w-[80%] px-2"
+                        onChange={(e) => setMessage(e.target.value)}
+                        value={message}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && !isLoading && message !== "") {
+                                startSendMessage();
+                            }
+                        }}
+                        placeholder="Message here ..."
+                        disabled={isPongVisible}
+                    />
                     <div id="message-input" className="w-[20%]">
                         <button
                             className={`w-full h-full text-white ${isLoading || message == "" ? "bg-gray-400" : "bg-blue-400"}`}
