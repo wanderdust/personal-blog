@@ -141,13 +141,13 @@ export default function ChatWindow() {
                 </div>
             </div>
             <button
-                className="rounded-full bg-white shadow-lg p-2 hover:bg-gray-100"
+                className={`rounded-full shadow-lg p-2 hover:bg-gray-100 ${isPongVisible ? "bg-orange-700" : "bg-white"}`}
                 onClick={() => setChatVisible(!isChatVisible)}
             >
                 <img
                     className="w-12 md:w-22"
-                    src="images/robot-head.png"
-                    alt="Buy Me A Coffee"
+                    src={isPongVisible ? "images/robot-head-evil.png" : "images/robot-head.png"}
+                    alt="Robot head"
                 />
             </button>
 
