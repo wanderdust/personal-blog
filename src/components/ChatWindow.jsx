@@ -95,8 +95,14 @@ export default function ChatWindow() {
 
 
     useEffect(() => {
-        addMessageToChat(chatMessages => [...chatMessages, messageBubble("Hi, I'm BillyBot. I can answer questions about Pablo's CV", "left")])
-        addMessageToChat(chatMessages => [...chatMessages, messageBubble("Try asking, what's Pablo's current role?", "left")])
+        const messages = [
+            "Hi, I'm BillyBot. I can answer questions about Pablo's CV",
+            "Try asking, what's Pablo's current role?",
+        ]
+        for (const message of messages) {
+            addMessageToChat(chatMessages => [...chatMessages, messageBubble(message, "left")])
+        }
+
     }, [])
 
     useEffect(() => {
