@@ -23,7 +23,7 @@ export default function ChatWindow() {
             "One sheep, two sheep, three sheep, four... *snoring*",
             "Zzzzzzz",
             "ZzZzZzZ",
-            "zzzzzz, *snores*, zzzz"
+            "If you ask nicely, I might play pong with you",
         ]
         return messages[Math.floor(Math.random() * messages.length)]
     }
@@ -124,10 +124,10 @@ export default function ChatWindow() {
             <div className={`h-96 w-64 border border-2 rounded bg-white ${!isChatVisible ? "hidden" : ""}`}>
                 <div className="h-[85%] relative">
                     {isPongVisible && <Pong isGameOver={handleGameOver} onAiScore={handleAiScore} />}
-                    <div className="h-[90%] relative overflow-auto pt-2">
+                    <div className="h-[92%] relative overflow-auto pt-2">
                         {chatMessages.map((message) => <span className="flex" ref={messagesEndRef}>{message}</span>)}
                     </div>
-                    <div className="h-[10%] text-left">
+                    <div className="h-[8%] text-left">
                         <p className={`text-sm text-gray-400 px-2 ${isLoading ? "visible" : "hidden"} `}>BillyBot is typing ...</p>
                     </div>
                 </div>
