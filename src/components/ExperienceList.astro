@@ -4,13 +4,40 @@ import Experience from "../components/Experience.astro";
 ---
 
 <div>
-    <Section title="Experience">
-        <ul>
-            <Experience
-                role="MLOps Engineer"
-                company="Zonda Satellite"
-                logo="images/zonda-logo.png"
-                body={`Worked as an MLOps Engineer where I built 
+  <Section title="Experience">
+    <ul>
+      <Experience
+        role="Data Platform Engineer"
+        company="Fanduel"
+        logo="images/fanduel-logo.png"
+        body={`Working as a Platform Engineer @ Fanduel`}
+        startDate="Sep 2023"
+        skills={[
+          "Python",
+          "Kubernetes",
+          "Terraform",
+          "AWS",
+          "SQL",
+          "Data Engineering",
+        ]}
+      />
+      <Experience
+        role="ML Consultant"
+        company="Klu.ai"
+        logo="images/klu-logo.png"
+        body={`Worked with an early stage startup to help them establish best practices for model training and deployment.
+                I built an ML/MLOps pipeline prototype in AWS using S3, DVC, Weights & Biases, Terraform & Sagemaker and documented the process.
+                I also worked on fine tuning and deploying a Large Language Model (Alpaca 7B and 13B) on a custom dataset. I benchmarked the models 
+                to enable easier decision making on which model to deploy to production.`}
+        startDate="May 2023"
+        endDate="July 2023"
+        skills={["Large Language Models", "Alpaca", "ML", "MLOPS"]}
+      />
+      <Experience
+        role="MLOps Engineer"
+        company="Zonda Satellite"
+        logo="images/zonda-logo.png"
+        body={`Worked as an MLOps Engineer where I built 
                 efficient data engineering pipelines using DBT to transform raw data from Snowflake into clean data. 
                 The pipelines were designed to follow best data engineering practices with observability, 
                 reproducibility, testing, and version control. I also built data engineering pipelines to move 
@@ -23,100 +50,95 @@ import Experience from "../components/Experience.astro";
                 FastAPI, AWS Lambda, API Gateway, Elastic Beanstalk, and Terraform. I set up a monitoring server using 
                 Grafana to track internal infrastructure performance, data pipeline execution, and data distribution in production.
                 `}
-                startDate="Jan 2022"
-                skills={[
-                    "Python",
-                    "SQL",
-                    "AWS",
-                    "Terraform",
-                    "MLOps",
-                    "Data Science",
-                    "Data Engineering",
-                ]}
-            />
-            <Experience
-                role="Machine Learning Engineer"
-                company="Zonda Satellite"
-                logo="images/zonda-logo.png"
-                body={`I built deep learning models to track construction and road construction activity from satellite 
+        startDate="Jan 2022"
+        endDate="Sep 2023"
+        skills={[
+          "Python",
+          "SQL",
+          "AWS",
+          "Terraform",
+          "MLOps",
+          "Data Science",
+          "Data Engineering",
+        ]}
+      />
+      <Experience
+        role="Machine Learning Engineer"
+        company="Zonda Satellite"
+        logo="images/zonda-logo.png"
+        body={`I built deep learning models to track construction and road construction activity from satellite 
                 imagery using PyTorch, PyTorch lightning, Python, and Docker. I also set up infrastructure to track 
                 Machine Learning experiments using MLflow.
 
                 I deployed the deep learning models to AWS batch to run offline predictions, and all model repositories 
                 were deployed using CI/CD with Terraform and AWS CodePipeline. Additionally, I built front-end applications 
-                using React and Dash to showcase the models to non-technical stakeholders in an engaging and interactive way.
-                    
-                My experience in Agile methodologies including Kanban and SCRUM allowed me to conduct multiple tech 
-                Retrospectives and tech Stand-ups, making the overall development process more efficient and 
-                streamlined. Working as a Machine Learning Engineer has allowed me to utilize my skills and 
-                knowledge to build efficient models and streamline the deployment process.
-                `}
-                startDate="Nov 2020"
-                endDate="Jan 2022"
-                skills={[
-                    "Python",
-                    "PyTorch",
-                    "NoSQL",
-                    "AWS",
-                    "CloudFormation",
-                    "Deep Learning",
-                    "Monitoring",
-                ]}
-            />
-            <Experience
-                role="Data Scientist"
-                company="UserTesting"
-                logo="images/usertesting-logo.png"
-                body={`I developed an unsupervised learning model using NLP embeddings with scikit learn
+                using React and Dash to showcase the models to non-technical stakeholders in an engaging and interactive way.`}
+        startDate="Nov 2020"
+        endDate="Jan 2022"
+        skills={[
+          "Python",
+          "PyTorch",
+          "NoSQL",
+          "AWS",
+          "CloudFormation",
+          "Deep Learning",
+          "Monitoring",
+        ]}
+      />
+      <Experience
+        role="Data Scientist"
+        company="UserTesting"
+        logo="images/usertesting-logo.png"
+        body={`I developed an unsupervised learning model using NLP embeddings with scikit learn
                     to detect participants who answered screener questions inconsistently. To deploy this model
                     I built a web interface using Flask with React & Redux to enable the Q&A to interact with the model
                     to detect fraudulent users.`}
-                startDate="Jun 2020"
-                endDate="Aug 2020"
-                skills={[
-                    "Python",
-                    "Data Science",
-                    "Unsupervised Learning",
-                    "React",
-                    "NLP",
-                ]}
-            />
-            <Experience
-                role="Multiple Experiences"
-                company="Life"
-                logo="images/mongol-rally-dream-nb.png"
-                body={`During this period of time I travelled to Scotland where I worked full time as a chef 
+        startDate="Jun 2020"
+        endDate="Aug 2020"
+        skills={[
+          "Python",
+          "Data Science",
+          "Unsupervised Learning",
+          "React",
+          "NLP",
+        ]}
+      />
+      <Experience
+        role="Multiple Experiences"
+        company="Life"
+        logo="images/mongol-rally-dream-nb.png"
+        body={`During this period of time I travelled to Scotland where I worked full time as a chef 
                     and a lifeguard while learned programming in my spare time. Through a series 
                     of online courses and personal projects I learned front-end development and progressed to 
                     machine learning & deep learning. During this time I also participated in the 
                     Mongol Rally, the longest charity rally in the world. We raised £1k for charity
                     APIC Pandora.`}
-                startDate="Sep 2016"
-                endDate="Sep 2019"
-                skills={[
-                    "Learning",
-                    "Software Development",
-                    "Work Under Pressure",
-                    "Enterpreneurship",
-                    "Communication",
-                ]}
-            />
-            <Experience
-                role="Sales Executive"
-                company="Mygon"
-                logo="images/mygon-logo.png"
-                body={`As part of the sales team, I was involved in the growth of the spanish branch of the
+        startDate="Sep 2016"
+        endDate="Sep 2019"
+        skills={[
+          "Learning",
+          "Software Development",
+          "Work Under Pressure",
+          "Enterpreneurship",
+          "Communication",
+        ]}
+      />
+      <Experience
+        role="Sales Executive"
+        company="Mygon"
+        logo="images/mygon-logo.png"
+        body={`As part of the sales team, I was involved in the growth of the spanish branch of the
                     company. My tasks included: Prospecting clients to create new sale opportunities; 
                     Keeping track of current and potential clients; Delivering succesful sales.`}
-                startDate="Sep 2015"
-                endDate="Mar 2016"
-                skills={[
-                    "sales",
-                    "communication",
-                    "goal driven",
-                    "building relationships",
-                ]}
-            />
-        </ul>
-    </Section>
+        startDate="Sep 2015"
+        endDate="Mar 2016"
+        skills={[
+          "sales",
+          "communication",
+          "goal driven",
+          "building relationships",
+        ]}
+      />
+    </ul>
+  </Section>
 </div>
